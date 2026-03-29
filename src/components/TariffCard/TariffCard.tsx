@@ -22,13 +22,21 @@ export const TariffCard: FC<TariffProps> = ({ tariff, index, activeCard, onSelec
   const best = tariff.is_best
   const finished = minutes === 0 && seconds === 0
 
-  const { isSmallScreen, isDesktop } = useMatchMedia()
+  const { isSmallScreen, isDesktop, isTablet, isMobile, isSmallMobile } = useMatchMedia()
 
   return (
     <Grid
-      size={best ? 12 : 4}
-      padding={best ? '30px 80px 26px 19px' : '70px 16px 26px 16px'}
-      borderRadius={best ? '34px' : '40px'}
+      size={isMobile || isSmallMobile || best ? 12 : 4}
+      padding={
+        isSmallMobile
+          ? '20px 16px 20px 20px'
+          : isMobile
+            ? '20px 16px 20px 30px'
+            : best
+              ? '30px 80px 26px 19px'
+              : '70px 16px 26px 16px'
+      }
+      borderRadius={isMobile || isSmallMobile ? '20px' : best ? '34px' : '40px'}
       border={activeCard ? '2px solid #FDB056' : '2px solid #484D4E'}
       bgcolor="#313637"
       position="relative"
@@ -42,34 +50,45 @@ export const TariffCard: FC<TariffProps> = ({ tariff, index, activeCard, onSelec
       }}
     >
       <Stack
-        direction={best ? 'row' : 'column'}
-        gap="40px"
+        direction={isMobile || isSmallMobile || best ? 'row' : 'column'}
+        gap={isSmallMobile ? '30px' : isMobile ? '50px' : '40px'}
         alignItems="center"
-        justifyContent={isDesktop ? 'flex-end' : 'center'}
+        justifyContent={
+          isMobile || isSmallMobile ? 'flex-start' : isDesktop ? 'flex-end' : 'center'
+        }
       >
-        <Stack gap="16px" alignItems="center">
-          <Typography variant="h2" lineHeight="120%" mt={isSmallScreen && best ? 0 : '16px'}>
+        <Stack
+          gap={isSmallScreen ? '12px' : '16px'}
+          alignItems={isSmallMobile || isMobile ? 'flex-start' : 'center'}
+          minWidth="121px"
+        >
+          <Typography
+            variant="h2"
+            lineHeight="120%"
+            mt={(isSmallScreen && best) || isSmallMobile || isMobile ? 0 : '16px'}
+          >
             {tariff?.period}
           </Typography>
-          <Stack width="100%" alignItems="center">
+          <Stack width="100%" alignItems={isSmallMobile || isMobile ? 'flex-start' : 'center'}>
             <Typography
-              mt={best ? '-15px' : 0}
-              fontSize="50px"
-              fontWeight={600}
+              mt={(best && (isDesktop || isTablet)) || isSmallMobile || isMobile ? '-15px' : 0}
+              variant="h6"
               color={activeCard ? '#FDB056' : '#FFF'}
+              whiteSpace="nowrap"
             >
               {`${finished ? tariff?.full_price : tariff?.price} ₽`}
             </Typography>
             {finished ? (
-              <Stack height="14px" />
+              <Stack height={isSmallMobile || isMobile ? '11px' : '14px'} />
             ) : (
               <Typography
                 variant="subtitle2"
                 alignSelf="flex-end"
-                mt="-15px"
+                mt={isSmallMobile || isMobile ? '-9px' : '-15px'}
                 sx={{ textDecoration: 'line-through' }}
                 color="#919191"
                 lineHeight="120%"
+                whiteSpace="nowrap"
               >
                 {`${tariff?.full_price} ₽`}
               </Typography>
@@ -81,12 +100,12 @@ export const TariffCard: FC<TariffProps> = ({ tariff, index, activeCard, onSelec
           maxWidth={best ? '328px' : '100%'}
           lineHeight="130%"
           py="4px"
-          alignSelf={best ? 'center' : 'flex-start'}
+          alignSelf={!isDesktop || best ? 'center' : 'flex-start'}
         >
-          {tariff?.text}
+          {isMobile || isSmallMobile ? tariff?.text.slice(0, 38) : tariff?.text}
         </Typography>
       </Stack>
-      {!finished && <Discount interest={discount} select={activeCard} />}
+      {!finished && <Discount interest={discount} select={activeCard} hit={tariff?.is_best} />}
       {tariff?.is_best && <Hit />}
     </Grid>
   )

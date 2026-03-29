@@ -45,7 +45,7 @@ export const Landing: FC<LandingProps> = ({ tariffs }) => {
     )
   }
 
-  const { isDesktop, isTablet, isMobile } = useMatchMedia()
+  const { isDesktop, isTablet, isMobile, isSmallMobile } = useMatchMedia()
 
   return (
     <Stack
@@ -53,29 +53,46 @@ export const Landing: FC<LandingProps> = ({ tariffs }) => {
         maxWidth: '100vw',
         minHeight: '100vh',
         backgroundColor: '#232829',
-        borderRadius: isTablet || isMobile ? 0 : '60px'
+        borderRadius: isTablet || isMobile || isSmallMobile ? 0 : '60px'
       }}
     >
       <Container maxWidth="lg">
         <Header />
-        <Typography variant="h1" mt="153px" mb="110px" lineHeight="110%" letterSpacing="0.4px">
+        <Typography
+          variant="h1"
+          mt={isDesktop || isTablet ? '153px' : isMobile ? '105px' : '94px'}
+          mb={isDesktop ? '110px' : isTablet ? '60px' : isMobile ? '20px' : '24px'}
+          lineHeight="110%"
+          letterSpacing={isDesktop || isTablet ? '0.4px' : isMobile ? '0.24px' : '0.22px'}
+          textAlign={isTablet ? 'center' : 'left'}
+        >
           Выбери подходящий для себя <span style={{ color: '#FDB056' }}>тариф</span>
         </Typography>
-        <Stack direction={isDesktop ? 'row' : 'column'} gap="86px" alignItems="center">
+        <Stack
+          direction={isDesktop ? 'row' : 'column'}
+          gap={isDesktop ? '86px' : isTablet ? '60px' : 0}
+          alignItems="center"
+        >
           <Stack position="relative" maxHeight="767px" alignItems="center">
-            <Image priority src="/img/man.png" alt="Man" width={380} height={767} />
+            <Image
+              priority
+              src="/img/man.png"
+              alt="Man"
+              width={isDesktop || isTablet ? 380 : isMobile ? 124 : 100}
+              height={isDesktop || isTablet ? 767 : isMobile ? 250 : 200}
+            />
             <Stack
               position="absolute"
               left={0}
               bottom={0}
               width="100%"
-              height="80px"
+              height={isDesktop || isTablet ? '80px' : isMobile ? '26px' : '20px'}
               sx={{
                 background: 'linear-gradient(180deg, rgba(35, 40, 41, 0.00) 0%, #232829 100%)'
               }}
             />
           </Stack>
-          <Stack width="100%" gap="20px">
+          <Stack width="100%" gap={isSmallMobile ? '10px' : isMobile ? '12px' : '20px'}>
             {!tariffsReverse?.length ? (
               <Typography
                 variant="h2"
@@ -88,7 +105,7 @@ export const Landing: FC<LandingProps> = ({ tariffs }) => {
                 Тарифы в обработке и скоро появятся на сайте
               </Typography>
             ) : (
-              <Grid container spacing={1.75}>
+              <Grid container spacing={isSmallMobile ? 0.75 : isMobile ? 1 : 1.75}>
                 {tariffsReverse.map((tariff, index) => (
                   <TariffCard
                     key={nanoid()}
@@ -104,19 +121,35 @@ export const Landing: FC<LandingProps> = ({ tariffs }) => {
               direction="row"
               gap="8px"
               maxWidth="499px"
-              padding="18px 20px"
+              padding={
+                isSmallMobile
+                  ? '14px 20px 14px 12px'
+                  : isMobile
+                    ? '14px 20px 14px 12px'
+                    : '18px 20px'
+              }
               borderRadius="20px"
               sx={{
                 background: '#2D3233'
               }}
             >
               <Image src="/svg/alert.svg" alt="alert" width={24} height={26} />
-              <Typography variant="body1" lineHeight="130%">
+              <Typography
+                variant="body1"
+                lineHeight="130%"
+                fontSize={isSmallMobile || isMobile ? '12px !important' : undefined}
+              >
                 Следуя плану на 3 месяца и более, люди получают в 2 раза лучший результат, чем за 1
                 месяц
               </Typography>
             </Stack>
-            <Stack direction="row" gap="12px" alignItems="center" maxWidth="605px" mt="10px">
+            <Stack
+              direction="row"
+              gap="12px"
+              alignItems="center"
+              maxWidth="605px"
+              mt={isSmallMobile ? '4px' : isMobile ? '12px' : '10px'}
+            >
               <Checkbox
                 disableRipple
                 checked={check}
@@ -126,23 +159,41 @@ export const Landing: FC<LandingProps> = ({ tariffs }) => {
                   <Image
                     src={selectCheckbox ? '/svg/checkbox.svg' : '/svg/checkbox-red.svg'}
                     alt=""
-                    width={32}
-                    height={32}
+                    width={isSmallMobile || isMobile ? 30 : 32}
+                    height={isSmallMobile || isMobile ? 30 : 32}
                   />
                 }
                 checkedIcon={
-                  <Image src="/svg/checkbox-checked.svg" alt="" width={32} height={32} />
+                  <Image
+                    src="/svg/checkbox-checked.svg"
+                    alt=""
+                    width={isSmallMobile || isMobile ? 30 : 32}
+                    height={isSmallMobile || isMobile ? 30 : 32}
+                  />
                 }
               />
-              <Typography variant="body1" color="#CDCDCD" lineHeight="120%">
+              <Typography
+                variant="body1"
+                color="#CDCDCD"
+                lineHeight="120%"
+                fontSize={isSmallMobile || isMobile ? '12px !important' : undefined}
+              >
                 Я согласен с <Link href="#">офертой рекуррентных платежей</Link> и{' '}
                 <Link href="#">Политикой конфиденциальности</Link>
               </Typography>
             </Stack>
-            <Button sx={{ mt: '-4px' }} onClick={check ? successfulPurchase : unsuccessfulPurchase}>
+            <Button
+              sx={{ mt: isSmallMobile ? '4px' : isMobile ? '10px' : '-4px' }}
+              onClick={check ? successfulPurchase : unsuccessfulPurchase}
+            >
               Купить
             </Button>
-            <Typography variant="body2" lineHeight="120%" color="#9B9B9B" mt="-6px">
+            <Typography
+              variant="body2"
+              lineHeight="120%"
+              color="#9B9B9B"
+              mt={isSmallMobile ? '-2px' : isMobile ? '8px' : '-6px'}
+            >
               Нажимая кнопку «Купить», Пользователь соглашается на разовое списание денежных средств
               для получения пожизненного доступа к приложению. Пользователь соглашается, что данные
               кредитной/дебетовой карты будут сохранены для осуществления покупок дополнительных

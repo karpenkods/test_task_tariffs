@@ -3,8 +3,8 @@
 import { useState, useLayoutEffect } from 'react'
 
 const queries = [
-  '(max-width: 375px)',
-  '(min-width: 376px) and (max-width: 766px)',
+  '(max-width: 374px)',
+  '(min-width: 375px) and (max-width: 766px)',
   '(min-width: 767px) and (max-width: 1199px)',
   '(min-width: 1200px)',
   '(min-width: 1280px)'

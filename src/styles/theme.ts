@@ -33,17 +33,35 @@ export const theme = createTheme({
     h1: {
       fontWeight: 700,
       fontSize: 40,
-      color: '#FFF'
+      color: '#FFF',
+      '@media (min-width:375px) and (max-width:766px)': {
+        fontSize: 24
+      },
+      '@media (max-width:374px)': {
+        fontSize: 22
+      }
     },
     h2: {
       fontWeight: 500,
       fontSize: 26,
-      color: '#FFF'
+      color: '#FFF',
+      '@media (min-width:375px) and (max-width:766px)': {
+        fontSize: 18
+      },
+      '@media (max-width:374px)': {
+        fontSize: 16
+      }
     },
     h3: {
       fontWeight: 500,
       fontSize: 28,
-      color: '#FFF'
+      color: '#FFF',
+      '@media (min-width:375px) and (max-width:766px)': {
+        fontSize: 18
+      },
+      '@media (max-width:374px)': {
+        fontSize: 16
+      }
     },
     h4: {
       fontFamily: raleway.style.fontFamily,
@@ -51,10 +69,10 @@ export const theme = createTheme({
       fontSize: 40,
       lineHeight: '110%',
       fontVariantNumeric: 'lining-nums',
-      '@media (min-width:376px) and (max-width:766px)': {
+      '@media (min-width:375px) and (max-width:766px)': {
         fontSize: 32
       },
-      '@media (max-width:375px)': {
+      '@media (max-width:374px)': {
         fontSize: 28
       }
     },
@@ -62,33 +80,68 @@ export const theme = createTheme({
       fontFamily: urbanist.style.fontFamily,
       fontWeight: 500,
       fontSize: 22,
-      lineHeight: '130%'
+      lineHeight: '130%',
+      '@media (min-width:375px) and (max-width:766px)': {
+        fontSize: 16
+      },
+      '@media (max-width:374px)': {
+        fontSize: 13
+      }
+    },
+    h6: {
+      fontWeight: 600,
+      fontSize: 50,
+      color: '#FFF',
+      '@media (min-width:375px) and (max-width:766px)': {
+        fontSize: 34
+      },
+      '@media (max-width:374px)': {
+        fontSize: 30
+      }
     },
     body1: {
       fontWeight: 400,
       fontSize: 16,
-      color: '#FFF'
+      color: '#FFF',
+      '@media (min-width:375px) and (max-width:766px)': {
+        fontSize: 14
+      },
+      '@media (max-width:374px)': {
+        fontSize: 14
+      }
     },
     body2: {
       fontWeight: 400,
       fontSize: 14,
-      color: '#FFF'
+      color: '#FFF',
+      '@media (min-width:375px) and (max-width:766px)': {
+        fontSize: 10
+      },
+      '@media (max-width:374px)': {
+        fontSize: 10
+      }
     },
     subtitle1: {
       fontWeight: 600,
       fontSize: 24,
       color: '#FFF',
-      '@media (min-width:376px) and (max-width:766px)': {
+      '@media (min-width:375px) and (max-width:766px)': {
         fontSize: 18
       },
-      '@media (max-width:375px)': {
+      '@media (max-width:374px)': {
         fontSize: 14
       }
     },
     subtitle2: {
       fontWeight: 400,
       fontSize: 24,
-      color: '#FFF'
+      color: '#FFF',
+      '@media (min-width:375px) and (max-width:766px)': {
+        fontSize: 16
+      },
+      '@media (max-width:374px)': {
+        fontSize: 14
+      }
     }
   },
   components: {
@@ -108,7 +161,20 @@ export const theme = createTheme({
           '&:hover': {
             backgroundColor: '#fb9b2d'
           },
-          '@media (max-width:600px)': {}
+          '@media (min-width:375px) and (max-width:766px)': {
+            alignSelf: 'center',
+            fontSize: 18,
+            width: '100%',
+            maxWidth: '450px',
+            height: '63px',
+            padding: 0
+          },
+          '@media (max-width:374px)': {
+            width: '100%',
+            fontSize: 18,
+            height: '55px',
+            padding: 0
+          }
         }
       }
     },

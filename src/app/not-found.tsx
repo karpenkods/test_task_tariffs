@@ -1,28 +1,23 @@
 'use client'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import Image from 'next/image'
 
 import { Stack, Typography, Button, Link, Container } from '@mui/material'
 
-import { useAppDispatch } from '@/common'
-import { pushWarningNotification } from '@/store'
+import { useMatchMedia } from '@/common'
 import background from '../../public/img/404.png'
 
 const NotFound: FC = () => {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(pushWarningNotification('Страница не найдена'))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { isTablet, isMobile, isSmallMobile } = useMatchMedia()
 
   return (
     <Stack
       sx={{
         maxWidth: '100vw',
         height: '100vh',
+        width: '100%',
         backgroundColor: '#232829',
-        borderRadius: '60px',
+        borderRadius: isTablet || isMobile || isSmallMobile ? 0 : '60px',
         justifyContent: 'center',
         alignItems: 'center'
       }}
@@ -36,13 +31,17 @@ const NotFound: FC = () => {
           flexDirection: 'column'
         }}
       >
-        <Image priority src={background} alt="404" width={500} />
+        <Image priority src={background} alt="404" width={isSmallMobile || isMobile ? 300 : 500} />
         <Stack gap="32px" width="100%" alignItems="center" justifyContent="center">
-          <Typography fontSize={64} fontWeight={500} color="#FDB056">
+          <Typography
+            fontSize={isSmallMobile || isMobile ? '48px !important' : 64}
+            fontWeight={500}
+            color="#FDB056"
+          >
             404
           </Typography>
           <Typography variant="h1">Страница не найдена</Typography>
-          <Link href="/">
+          <Link href="/" sx={{ minWidth: '200px' }}>
             <Button>На главную</Button>
           </Link>
         </Stack>
