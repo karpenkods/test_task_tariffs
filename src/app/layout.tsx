@@ -28,7 +28,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: 'Тестовое задание 4А.Консалтинг',
       description:
         'Тестовое задание для кандидата на вакансию Frontend-разработчик компании 4А.Консалтинг',
-      url: 'https://portfolio-delta-pearl-80.vercel.app',
+      url: 'https://test-task-tariffs-8ebe.vercel.app',
       images: ['img/d.png']
     }
   }

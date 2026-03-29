@@ -11,4 +11,4 @@ NextJS, TypeScript, Redux Toolkit, RTK Query, Material UI
 ***
 Реализовано СЕО проекта.
 ***
-Сайт: https://queries-18e77.web.app/
+Сайт: https://test-task-tariffs-8ebe.vercel.app
