@@ -1,10 +1,20 @@
 'use client'
-import { Montserrat } from 'next/font/google'
+import { Montserrat, Raleway, Urbanist } from 'next/font/google'
 import { createTheme } from '@mui/material/styles'
 
 const montserrat = Montserrat({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin', 'cyrillic'],
+  display: 'swap'
+})
+const raleway = Raleway({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin', 'cyrillic'],
+  display: 'swap'
+})
+const urbanist = Urbanist({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
   display: 'swap'
 })
 
@@ -14,122 +24,117 @@ export const theme = createTheme({
       xs: 0,
       sm: 600,
       md: 900,
-      lg: 1216,
+      lg: 1280,
       xl: 1440
     }
   },
   typography: {
     fontFamily: montserrat.style.fontFamily,
     h1: {
+      fontWeight: 700,
       fontSize: 40,
-      color: 'silver'
+      color: '#FFF'
     },
     h2: {
+      fontWeight: 500,
+      fontSize: 26,
+      color: '#FFF'
+    },
+    h3: {
+      fontWeight: 500,
+      fontSize: 28,
+      color: '#FFF'
+    },
+    h4: {
+      fontFamily: raleway.style.fontFamily,
+      fontWeight: 700,
+      fontSize: 40,
+      lineHeight: '110%',
+      fontVariantNumeric: 'lining-nums',
+      '@media (min-width:376px) and (max-width:766px)': {
+        fontSize: 32
+      },
+      '@media (max-width:375px)': {
+        fontSize: 28
+      }
+    },
+    h5: {
+      fontFamily: urbanist.style.fontFamily,
+      fontWeight: 500,
+      fontSize: 22,
+      lineHeight: '130%'
+    },
+    body1: {
+      fontWeight: 400,
+      fontSize: 16,
+      color: '#FFF'
+    },
+    body2: {
+      fontWeight: 400,
+      fontSize: 14,
+      color: '#FFF'
+    },
+    subtitle1: {
+      fontWeight: 600,
       fontSize: 24,
-      color: 'silver'
+      color: '#FFF',
+      '@media (min-width:376px) and (max-width:766px)': {
+        fontSize: 18
+      },
+      '@media (max-width:375px)': {
+        fontSize: 14
+      }
+    },
+    subtitle2: {
+      fontWeight: 400,
+      fontSize: 24,
+      color: '#FFF'
     }
   },
   components: {
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          '::-webkit-scrollbar': {
-            display: 'none'
-          }
-        }
-      }
-    },
     MuiButton: {
       styleOverrides: {
         root: {
-          maxWidth: 'fit-content',
+          width: '352px',
+          height: '66px',
           textTransform: 'none',
-          padding: '16px',
-          fontSize: '16px',
-          borderRadius: '100%',
-          backgroundColor: 'transparent',
-          backdropFilter: 'blur(5px)',
-          boxShadow: 'rgba(0, 0, 0, 0.56) 0px 20px 60px 3px',
-          color: 'silver',
-          zIndex: 99,
-          transition: 'all 0.4s ease-in-out',
-          '@media (min-width:600px)': {
-            fontSize: '18px',
-            '&:hover': {
-              boxShadow: 'rgba(192, 192, 192, 0.56) 0px 20px 50px 4px'
-            }
-          }
+          padding: '20px 60px',
+          fontSize: '20px',
+          borderRadius: '20px',
+          backgroundColor: '#FDB056',
+          color: '#191E1F',
+          fontWeight: 700,
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            backgroundColor: '#fb9b2d'
+          },
+          '@media (max-width:600px)': {}
         }
       }
     },
-    MuiIconButton: {
+    MuiCheckbox: {
       styleOverrides: {
         root: {
-          maxWidth: 'fit-content',
-          padding: '8px',
-          backgroundColor: 'transparent',
-          backdropFilter: 'blur(5px)',
-          border: '2px solid rgba(192, 192, 192, 0.56)',
-          color: 'silver',
-          transition: 'all 0.4s ease-in-out',
-          zIndex: 99,
-          '@media (min-width:600px)': {
-            padding: '12px',
-            '&:hover': {
-              backgroundColor: 'transparent',
-              boxShadow: 'rgba(192, 192, 192, 0.56) 0px 20px 50px 4px'
-            }
+          margin: '0 !important',
+          padding: 0,
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            backgroundColor: 'transparent',
+            opacity: 0.8
           }
         }
       }
     },
-    MuiDialog: {
-      styleOverrides: {
-        paper: {
-          backgroundColor: 'transparent',
-          backdropFilter: 'blur(5px)',
-          boxShadow: 'none',
-          borderRadius: '12px',
-          border: '1px solid rgba(192, 192, 192, 0.2)',
-          '@media (max-width:600px)': {
-            margin: '16px'
-          }
-        }
-      }
-    },
-    MuiTextField: {
+    MuiLink: {
       styleOverrides: {
         root: {
-          '& label.Mui-focused': {
-            color: 'silver'
-          },
-          '& .MuiInputLabel-root': {
-            fontSize: 18,
-            color: 'silver'
-          },
-          '& .MuiOutlinedInput-root': {
-            width: '500px',
-            padding: '8px',
-            fontWeight: 400,
-            fontSize: 18,
-            color: 'silver',
-            backdropFilter: 'blur(5px)',
-            '@media (max-width: 600px)': {
-              width: '100%'
-            },
-            '& fieldset': {
-              borderRadius: '12px',
-              borderColor: 'silver'
-            },
-            '&:hover fieldset': {
-              transition: '0.3s',
-              borderColor: 'silver',
-              boxShadow: 'rgba(192, 192, 192, 0.56) 0px 5px 30px 3px'
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: 'silver',
-              boxShadow: 'rgba(192, 192, 192, 0.56) 0px 5px 30px 3px'
-            }
+          color: '#CDCDCD',
+          textDecoration: 'underline',
+          textDecorationColor: '#CDCDCD',
+          textUnderlineOffset: '3px',
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            textDecorationColor: 'transparent'
           }
         }
       }

@@ -30,10 +30,6 @@
     "import/no-unresolved": "off",
     "react/prop-types": "off",
     "react/no-unknown-property": ["error", { "ignore": ["css", "tsx", "ts"] }],
-    // "require-jsdoc": "off",
-    // "@typescript-eslint/no-var-requires": "off",
-    // "@typescript-eslint/ban-ts-comment": "off",
-    // "@typescript-eslint/ban-types": "off",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-explicit-any": "off"
   }

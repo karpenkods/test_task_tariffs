@@ -1,3 +1,3 @@
-export * from './provider-store'
-export * from './provider-theme'
-export * from './snackbar-provider'
+export * from './providerStore'
+export * from './providerTheme'
+export * from './snackbarProvider'

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { nanoid } from 'nanoid'
 
-import { ISnackbar } from '@/common/models'
+import { ISnackbar } from '@/common'
 
 const initialState: ISnackbar[] = []
 

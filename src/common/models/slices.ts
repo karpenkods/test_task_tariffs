@@ -6,3 +6,9 @@ export interface ISnackbar {
   message: string
   isDismissed?: boolean
 }
+
+export interface ICounter {
+  minutes: number
+  seconds: number
+  color: string
+}
